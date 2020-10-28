@@ -1,0 +1,16 @@
+{
+"companyName": "Allan Samurai Madeira",
+"productName": "Vidro Demo",
+"productVersion": "1.0",
+"dataUrl": "a10f330d666253679c491bedff533e9d.unityweb",
+"wasmCodeUrl": "eddfdaf7c6243a96575e60b2cc3b8b29.unityweb",
+"wasmFrameworkUrl": "94421ab099409819fddbf548c05068bd.unityweb",
+"graphicsAPI": ["WebGL 1.0"],
+"webglContextAttributes": {"preserveDrawingBuffer": false},
+"splashScreenStyle": "Dark",
+"backgroundColor": "#000000",
+"cacheControl": {"default": "must-revalidate"},
+"developmentBuild": false,
+"multithreading": false,
+"unityVersion": "2019.4.0f1"
+}

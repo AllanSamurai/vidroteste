@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name='viewport'
+        content='width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no' />
+    <meta charset='utf-8'>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Vidro Demo</title>
+    <!-- <link rel="shortcut icon" href="TemplateData/favicon.ico"> -->
+    <link rel="stylesheet" type="text/css" href="TemplateData/main.css">
+    <script src="TemplateData/progress.js"></script>
+    <script src="ULoader.js"></script>
+    <script>
+        var gameInstance = UnityLoader.instantiate("gameContainer", "Build/fd61d28ff08c86817e14d70d01c16b4d.json", {
+            compatibilityCheck: function (unityInstance, onsuccess, onerror) {
+                if (!UnityLoader.SystemInfo.hasWebGL) {
+                    unityInstance.popup("Seu navegador não suporta WebGL", [{
+                        text: "OK",
+                        callback: onerror
+                    }]);
+                } else if (UnityLoader.SystemInfo.os === 'iOS' && ["Safari"].indexOf(UnityLoader.SystemInfo.browser) > -1 && UnityLoader.SystemInfo.browserVersion < 12.2) {
+                    unityInstance.popup("Atenção: atualmente a versão mínima do iOS compatível com este conteúdo em WebGL é iOS 12.2. Pressione OK se desejar continuar assim mesmo.", [{
+                        text: "OK",
+                        callback: onsuccess
+                    }]);
+                } else if (UnityLoader.SystemInfo.os === 'iOS' && ["Safari"].indexOf(UnityLoader.SystemInfo.browser) == -1) {
+                    unityInstance.popup("Atenção: atualmente o seu navegador não é compatível com este conteúdo em WebGL. Tente usar o navedador Safari. Pressione OK se desejar continuar assim mesmo.", [{
+                        text: "OK",
+                        callback: onsuccess
+                    }]);
+                } else if (UnityLoader.SystemInfo.os === 'Android' && ["Chrome"].indexOf(UnityLoader.SystemInfo.browser) == -1) {
+                    unityInstance.popup("Atenção: atualmente o seu navegador não é compatível com este conteúdo em WebGL Tente usar o navegador Chrome. Pressione OK se desejar continuar assim mesmo.", [{
+                        text: "OK",
+                        callback: onsuccess
+                    }]);
+                } else if (["Chrome", "Safari"].indexOf(UnityLoader.SystemInfo.browser) == -1) {
+                    unityInstance.popup("Atenção: atualmente o seu navegador não é compatível com este conteúdo em WebGL. Pressione OK se desejar continuar assim mesmo.", [{
+                        text: "OK",
+                        callback: onsuccess
+                    }]);
+                } else {
+                    onsuccess();
+                }
+            },
+            onProgress: UnityProgress,
+            Module: {
+                "webglContextAttributes": { "preserveDrawingBuffer": true },
+                "TOTAL_MEMORY": 67108864,
+            }
+        });
+    </script>
+    <script src="aswebar.js"></script>
+</head>
+
+<body>
+    <div id="loadScreen" class="loadScreen">
+        <div class="logo">
+            <img class="vertical" width="370" height="173" src="TemplateData/logo.png">
+        </div>
+        <div id="progress" class="progress">
+            <div id="empty" class="empty"></div>
+            <div id="full" class="full"></div>
+            <div id="downloadInfo" class="downloadInfo">0%</div>
+        </div>
+        <div id="info" class="info">
+            <img class="vertical" width="419" height="25" src="TemplateData/carregando.png">
+        </div>
+        <div id="waitInit" class="waitInit">
+            Tudo pronto, aguarde inicialização.<br>Isso pode levar alguns segundos.
+        </div>
+    </div>
+    <div id="gameContainer" style="width: 100%; height: 100%; margin: auto"></div>
+    <div id="photo" style="position: absolute; width: 100%; height: 100%; background-color: white; display: none;">
+        <img id="photoImg" src="" alt="Captura de tela" width="90%" height="90%"
+            style="position: relative; top: 5%; left: 5%;">
+        <div style="position: absolute; top: 96%; width: 100%; height: 3%;">
+            <img src="TemplateData/toque.png"
+                style="position: relative; height: 100%; width: auto; left: 50%; -webkit-transform: translateX(-50%);transform: translateX(-50%);"
+                alt="">
+        </div>
+        <div id="photoClose" onclick="ClosePhoto();"
+            style="position: absolute;top: 0%;right: 0%; width: 10vh;height: 10vh;">
+            <div
+                style="position: relative; top: 20%; left: 20%; width: 60%;height: 60%; background-image: url('TemplateData/close.png'); background-size: cover;">
+            </div>
+        </div>
+    </div>
+    <script>
+        function ClosePhoto() {
+            document.getElementById("photo").style.display = "none";
+        }
+    </script>
+</body>
+
+</html>
